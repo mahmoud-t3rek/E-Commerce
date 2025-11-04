@@ -10,14 +10,19 @@ import crypto from 'crypto-js';
 import { compareHash, genreteHash } from 'src/common/services/Hash';
 import { JwtService } from '@nestjs/jwt';
   import {OAuth2Client, TokenPayload} from 'google-auth-library';
-import { GenerateToken } from 'src/common/services/Token/genreteToken';
+
+import { TokenService } from 'src/common/services/Token/Token';
+import { GenerateTokens } from 'src/common/services/Token';
+import type { UserRequest } from 'src/common';
 
 @Injectable()
 export class UserService {
   constructor(
   private readonly userRepo:userRepository,
   private readonly otpRepo:otpRepository,
-  private jwtService:JwtService
+  private jwtService:JwtService,
+  private tokenService:TokenService,
+  private  readonly CreateToken:GenerateTokens
 
   ) {}
   private async sendOtp(userId:Types.ObjectId,otpType?:OtpTypeEnum){
@@ -111,7 +116,7 @@ if( !await compareHash(password,user.password)){
   throw new BadRequestException("password or email in incorrect")
 }
  
-const{access_Token,Refresh_Token}= await GenerateToken(user)
+const{access_Token,Refresh_Token}= await this.CreateToken.Generate_access(user)
 return {massege:"done",access_Token , Refresh_Token}
 
 }    
@@ -184,7 +189,7 @@ if (user.provider === userProvider.system) {
   throw new BadRequestException("you must login on system");
 }
 
-const tokens= await GenerateToken(user)
+const tokens= await this.CreateToken.Generate_access(user)
 return { message: "success LogIn", ...tokens }
 }
 }

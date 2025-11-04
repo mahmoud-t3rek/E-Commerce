@@ -1,10 +1,13 @@
-import { Body, Controller, Get, Patch, Post, Req, UseGuards, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, ParseFilePipe, Patch, Post, Req, SetMetadata, UploadedFile, UseGuards, UseInterceptors, ValidationPipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { confirmEmailDto, loginWithgmail, resendOtpDto, resetPasswordDto, signInDto, SignUpDto } from './DTO/user.dto';
-import { AuthGuard } from '../auth/guard/auth.guard';
 import { Request } from 'express';
 import { Request as ExpressRequest } from 'express';
 import { HUserDocument } from 'src/DB';
+import{ AuthGuard, multerLocal, TokenType, type UserRequest } from 'src/common';
+import { Token } from '../decorators';
+import { tokenType } from 'src/common/middlewares/authountcation';
+import { FileInterceptor } from '@nestjs/platform-express';
 export interface AuthRequest extends ExpressRequest {
   user?: HUserDocument;
 }
@@ -39,6 +42,20 @@ return this.userService.resetPassword(body)
 @Post("/loginwithGmail")
 loginWithgmail(@Body() body:loginWithgmail){
 return this.userService.loginWithgmail(body)
+}
+
+@Token()
+@UseGuards(AuthGuard)
+@Get("/getprofile")
+getprofile(@Req()req:UserRequest){
+return {user:req.user}
+}
+@Post('upload')
+@UseInterceptors(FileInterceptor('attachments',multerLocal({filterEnum:['image/jpeg','image/png']})))
+uploadFile(@UploadedFile(new ParseFilePipe({
+  fileIsRequired:true
+})) file: Express.Multer.File) {
+  return {message:"done",file}
 }
 
 }

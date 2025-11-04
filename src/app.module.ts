@@ -7,7 +7,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
 import ConnectionDB from './DB/connection/connection.DB';
 import { OtpModel } from './DB/models/otp.model';
-import { AuthModule } from './module/auth/auth.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -16,11 +15,10 @@ import { AuthModule } from './module/auth/auth.module';
   }),
  ConnectionDB(),
 UserModule,
-AuthModule
 ]
 ,
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
- 
+  
