@@ -15,7 +15,7 @@ import {
   ValidateIf,
 } from 'class-validator';
 import { userGender, userProvider, userRole } from 'src/common/enums';
-import { IsMatchFeilds } from 'src/module/decorators/user.decrator';
+import { IsMatchFeilds } from 'src/common/decorators/user.decrator';
 
 export class SignUpDto {
   @IsString()

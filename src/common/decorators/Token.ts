@@ -7,6 +7,6 @@ export const Token=(tokenType:TokenType=TokenType.access)=>{
 }
 
 export const Access_Role="Access_Role"
-export const AuthoToken=(Role:userRole=userRole.user)=>{
+export const AuthoToken=(Role:userRole[]=[userRole.user] )=>{
     return SetMetadata(Access_Role,Role)
 }

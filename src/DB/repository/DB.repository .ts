@@ -6,7 +6,7 @@ import { DeleteResult, GetLeanResultType, HydratedDocument, MongooseBaseQueryOpt
 export class dbRepository<TDocument>{
     constructor(protected readonly model:Model<TDocument>){}
      async create(data:Partial<TDocument>):Promise<HydratedDocument<TDocument>>{
-            return this.model.create(data)
+          return await this.model.create(data)
         }
      async findOne({
               filter,
@@ -67,7 +67,7 @@ export class dbRepository<TDocument>{
            async DeleteOne( filter: RootFilterQuery<TDocument>,options?: DeleteOptions & MongooseBaseQueryOptions<TDocument>): Promise<DeleteResult | null> {
             return await this.model.deleteOne(filter,options); 
           }
-           async findByIdAndUpdate(  id?: string | Types.ObjectId,update?: UpdateQuery<TDocument>,options?: QueryOptions<TDocument> | null):  Promise<TDocument | null> {
+           async findByIdAndUpdate(  id:  Types.ObjectId,update?: UpdateQuery<TDocument>,options?: QueryOptions<TDocument> | null):  Promise<TDocument | null> {
             return await this.model.findByIdAndUpdate(id,update,options); 
           }
            async findOneAndUpdate(  filter: RootFilterQuery<TDocument>,update?: UpdateQuery<TDocument>,options?: QueryOptions<TDocument> | null):  Promise<TDocument | null> {

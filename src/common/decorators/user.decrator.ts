@@ -1,17 +1,5 @@
 import {
-  Allow,
-  IsEmail,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  IsStrongPassword,
-  Length,
-  Max,
-  Min,
   registerDecorator,
-  Validate,
-  validate,
-  ValidateIf,
   ValidationOptions,
 } from 'class-validator';
 import { ValidatorConstraint, ValidatorConstraintInterface, ValidationArguments } from 'class-validator';
@@ -37,3 +25,12 @@ export function IsMatchFeilds(constraints:string[],validationOptions?: Validatio
     });
   }
 }
+
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+
+export const UserDecrator = createParamDecorator(
+  (data: unknown, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest();
+    return request.user;
+  },
+);

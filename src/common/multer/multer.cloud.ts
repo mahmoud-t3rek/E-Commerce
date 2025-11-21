@@ -30,7 +30,7 @@ cb(null,`${Date.now()}_${file.originalname}`)
        throw new BadRequestException("invalid file type")
     }
     else{
-     cb(null, false)
+     cb(null, true)
      }
 
 }

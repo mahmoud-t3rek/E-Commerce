@@ -5,7 +5,7 @@ import { Request } from 'express';
 import { Request as ExpressRequest } from 'express';
 import { HUserDocument } from 'src/DB';
 import{ AuthGuard, multerLocal, TokenType, type UserRequest } from 'src/common';
-import { Token } from '../decorators';
+import { Token } from '../../common/decorators';
 import { tokenType } from 'src/common/middlewares/authountcation';
 import { FileInterceptor } from '@nestjs/platform-express';
 export interface AuthRequest extends ExpressRequest {

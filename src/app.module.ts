@@ -7,6 +7,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
 import ConnectionDB from './DB/connection/connection.DB';
 import { OtpModel } from './DB/models/otp.model';
+import { BrandModule } from './module/brand/brand.module';
+import { categoryModule } from './module/catgory/catogery.module';
+import { SubcategoryModule } from './module/Supcatgory/Subcatogery.module';
+
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -15,6 +19,9 @@ import { OtpModel } from './DB/models/otp.model';
   }),
  ConnectionDB(),
 UserModule,
+BrandModule,
+categoryModule,
+SubcategoryModule
 ]
 ,
   controllers: [AppController],

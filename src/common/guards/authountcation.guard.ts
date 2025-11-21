@@ -2,7 +2,7 @@
 import { Injectable, CanActivate, ExecutionContext, BadRequestException } from '@nestjs/common';
 import { TokenService } from '../services';
 import { Reflector } from '@nestjs/core';
-import { Token_Type } from 'src/module/decorators';
+import { Token_Type } from 'src/common/decorators';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
