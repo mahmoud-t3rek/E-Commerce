@@ -4,7 +4,7 @@ import {  TokenService } from 'src/common';
 import { JwtService } from '@nestjs/jwt';
 import { brandModel, brandRepository, UserModel, userRepository } from 'src/DB';
 import { S3Service } from 'src/common/services/email/S3Config';
-import { categoryModel } from 'src/DB/models/catogery.model';
+import { categoryModel } from 'src/DB/models/category.model';
 import { categoryController } from './Catogery.controller';
 import { categoryService } from './catogery.service';
 import { categoryRepository } from 'src/DB/repository/catogeryrepositry';

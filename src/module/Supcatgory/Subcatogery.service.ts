@@ -57,7 +57,7 @@ const slug = slugify(name, { replacement: "_", lower: false, trim: true });
 
     try {
     url = await this.s3Service.uploadFile({
-      path: `category/${Category.assetFoldeId}/${assetFolderId}/${file.originalname}`,
+      path: `category/${Category.assetFoldeId}/subcategorys/${assetFolderId}/${file.originalname}`,
       file
     });
     const Subcategory = await this.SubcategoryRepo.create({

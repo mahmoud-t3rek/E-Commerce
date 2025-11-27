@@ -10,6 +10,8 @@ import { OtpModel } from './DB/models/otp.model';
 import { BrandModule } from './module/brand/brand.module';
 import { categoryModule } from './module/catgory/catogery.module';
 import { SubcategoryModule } from './module/Supcatgory/Subcatogery.module';
+import { ProductModule } from './module/product/product.module';
+import { CartModule } from './module/Cart/Cart.module';
 
 
 @Module({
@@ -21,7 +23,9 @@ import { SubcategoryModule } from './module/Supcatgory/Subcatogery.module';
 UserModule,
 BrandModule,
 categoryModule,
-SubcategoryModule
+SubcategoryModule,
+ProductModule,
+CartModule
 ]
 ,
   controllers: [AppController],
